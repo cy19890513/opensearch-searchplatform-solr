@@ -10,8 +10,9 @@ from api.client import get_client
 from api.search import router as search_router
 from api.suggest import router as suggest_router
 from api.similar import router as similar_router
+from api.hybrid import router as hybrid_router
 
-app = FastAPI(title="Product Search API", version="0.3.0")
+app = FastAPI(title="Product Search API", version="0.4.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,6 +22,7 @@ app.add_middleware(
 app.include_router(search_router)
 app.include_router(suggest_router)
 app.include_router(similar_router)
+app.include_router(hybrid_router)
 
 UI_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ui")
 if os.path.isdir(UI_DIR):
