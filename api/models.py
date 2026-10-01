@@ -49,3 +49,16 @@ class SearchResponse(BaseModel):
     took_ms: int
     hits: List[SearchHit]
     facets: Facets
+
+
+class HybridRequest(BaseModel):
+    query: str
+    page_size: int = Field(default=20, ge=1, le=100)
+    alpha: float = Field(default=0.5, ge=0.0, le=1.0)  # weight of vector score
+
+
+class HybridResponse(BaseModel):
+    total: int
+    took_ms: int
+    alpha: float
+    hits: List[SearchHit]
