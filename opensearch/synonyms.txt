@@ -1,0 +1,18 @@
+# E-commerce synonym sets, one comma-separated set per line (Solr format).
+# Applied at index time via the product_synonyms filter -> product_analyzer.
+# After editing, recreate the index (synonyms are baked in at index time):
+#   bash scripts/create-index.sh && python pipeline/bulk_index.py --file data/catalog.jsonl
+
+sneakers, trainers, running shoes, runners
+tv, television, televisions
+headphones, earphones, earbuds, headset
+laptop, notebook, ultrabook
+smartphone, cell phone, mobile phone
+sofa, couch
+air fryer, airfryer
+robot vacuum, robovac
+coffee maker, coffeemaker
+smart watch, smartwatch
+backpack, daypack, rucksack
+yoga mat, exercise mat
+dumbbell, dumbell
