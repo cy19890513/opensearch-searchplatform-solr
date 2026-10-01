@@ -5,8 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from api import config
 from api.client import get_client
 from api.search import router as search_router
+from api.suggest import router as suggest_router
+from api.similar import router as similar_router
 
-app = FastAPI(title="Product Search API", version="0.1.0")
+app = FastAPI(title="Product Search API", version="0.2.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,6 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(search_router)
+app.include_router(suggest_router)
+app.include_router(similar_router)
 
 
 @app.get("/health")
