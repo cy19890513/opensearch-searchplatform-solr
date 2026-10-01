@@ -1,0 +1,57 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.19.0
+    container_name: oss-opensearch
+    environment:
+      - discovery.type=single-node
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=SearchDemo123!
+      - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    networks:
+      - searchnet
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.19.0
+    container_name: oss-dashboards
+    environment:
+      - OPENSEARCH_HOSTS=https://opensearch:9200
+      - OPENSEARCH_USERNAME=admin
+      - OPENSEARCH_PASSWORD=SearchDemo123!
+    ports:
+      - "5601:5601"
+    depends_on:
+      - opensearch
+    networks:
+      - searchnet
+
+  solr:
+    image: solr:9.8
+    container_name: oss-solr
+    ports:
+      - "8983:8983"
+    command:
+      - solr-precreate
+      - products
+    volumes:
+      - solr-data:/var/solr
+    networks:
+      - searchnet
+
+volumes:
+  opensearch-data:
+  solr-data:
+
+networks:
+  searchnet:
