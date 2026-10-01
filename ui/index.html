@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Search — OpenSearch demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Product Search</h1>
+  <div class="searchbox">
+    <input id="q" type="text" placeholder="wireless headphones, 4k tv, yoga mat…" autocomplete="off">
+    <button id="go">Search</button>
+    <ul id="suggest" class="suggest hidden"></ul>
+  </div>
+</header>
+<main>
+  <aside id="facets">
+    <div class="facet-group">
+      <h3>Sort</h3>
+      <select id="sort">
+        <option value="relevance">Relevance</option>
+        <option value="price_asc">Price: low to high</option>
+        <option value="price_desc">Price: high to low</option>
+        <option value="rating">Top rated</option>
+        <option value="newest">Newest</option>
+      </select>
+    </div>
+    <div class="facet-group">
+      <h3>Category</h3>
+      <div id="f-cat"></div>
+    </div>
+    <div class="facet-group">
+      <h3>Brand</h3>
+      <div id="f-brand"></div>
+    </div>
+    <div class="facet-group">
+      <h3>Price</h3>
+      <div id="f-price"></div>
+    </div>
+    <div class="facet-group">
+      <label><input type="checkbox" id="f-stock"> In stock only</label><br>
+      <label>Min rating
+        <select id="f-rating">
+          <option value="">Any</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="4.5">4.5+</option>
+        </select>
+      </label>
+    </div>
+  </aside>
+  <section>
+    <div id="meta"></div>
+    <div id="results"></div>
+    <div id="pager"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
